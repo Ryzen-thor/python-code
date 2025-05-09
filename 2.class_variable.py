@@ -1,6 +1,9 @@
+from pprint import pprint
+
 class HTMLDocument:
     """Typing doc for class"""
     content = "HTML/CSS"
+    version = 5
     def __init__(self, version):
         self.version = version
 
@@ -27,5 +30,26 @@ print(HTMLDocument.content)
 setattr(HTMLDocument, 'content', 'HTML5+')
 print(HTMLDocument.content)
 
-#since python is dynamic langage 
+#since python is dynamic langage we can add class variable during runtime
+HTMLDocument.media_type= 'text/html'
+print(HTMLDocument.media_type)
 
+#to delete class variable 
+delattr(HTMLDocument, 'content')
+print(HTMLDocument.__dict__)
+
+# or can do 
+del HTMLDocument.version
+
+
+# callable class attribute
+"""class attribute can be any objects such as functions
+When we add function to a class the function becomes a class attribute.
+Since function is callable the class attribute is callable attribute"""
+
+def render():
+    print("Rendering HTML doc")
+
+HTMLDocument.render = render
+pprint(HTMLDocument.__dict__)  # now you will see one more key render with function address
+print(HTMLDocument.render())
