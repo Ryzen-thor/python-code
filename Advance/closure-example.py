@@ -61,3 +61,42 @@ def outer():
 
 fn=outer()
 fn()
+
+"""
+    So this message variable is available to two scope, Nonlocal scope(closure) and local scope for outer.
+
+    Now the reason why message can still exist even though outer is executed because these two scope refers to another object call `cell`. So both these scope refer to cell object and this cell object refers to str object of message varaible.
+
+    To know the address of cell print(fn.__closure__)
+
+    And if you do hex(id(message)) inside the outer and inner both will have same reference id. 
+
+    So to access the value of message Python technically double hop.
+
+    A closure as a function and an extended scope that contains free variables. To find the free var print(fn.__code__.co_freevars)
+"""
+
+print(fn.__closure__)
+print(fn.__code__.co_freevars)
+
+
+"""
+    Closure with loop.
+
+    Suppose we want to create three closure.
+"""
+
+def multiplier(x):
+    def multiply(y):
+        return x*y
+    return multiply
+
+multipliers = []
+
+for x in range(1,4):
+    multipliers.append(multiplier(x))
+
+m1,m2,m3 = multipliers
+print(m1(10))
+print(m2(10))
+print(m3(10))
