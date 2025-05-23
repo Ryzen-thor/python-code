@@ -79,3 +79,4 @@ if __name__ == "__main__":
     # search_value = 40
     # result = tree.search(search_value)
     # print(f"Search for {search_value}: {'Found' if result else 'Not found'}")
+
