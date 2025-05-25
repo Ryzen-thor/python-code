@@ -1,0 +1,4 @@
+"""
+    Single Responsibilty Principle
+    
+"""
